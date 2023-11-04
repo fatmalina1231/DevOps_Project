@@ -15,7 +15,10 @@
     <description>DevOps_Project</description>
     <properties>
         <java.version>11</java.version>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -51,6 +54,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,5 +76,14 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>deploymentRepo</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.1.19:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>
+
