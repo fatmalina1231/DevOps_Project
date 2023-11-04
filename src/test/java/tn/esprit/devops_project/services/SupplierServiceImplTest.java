@@ -11,13 +11,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
+import tn.esprit.devops_project.entities.SupplierCategory;
 import tn.esprit.devops_project.repositories.SupplierRepository;
 import java.util.ArrayList;
 import java.util.Optional;
 
+
 @SpringBootTest
 class SupplierServiceImplTest {
-
     @InjectMocks
     SupplierServiceImpl supplierService;
 
@@ -29,93 +30,68 @@ class SupplierServiceImplTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    // fonctions avec des tests unitaires
+
     @Test
-    void retrieveAllSuppliers() {
-        List<Supplier> supplierList = new ArrayList<>();
-        // Créez des fournisseurs simulés
-        Supplier supplier1 = new Supplier();
-        supplier1.setIdSupplier(1L);
-        supplier1.setCode("SUP1");
-        supplier1.setLabel("Supplier 1");
+    void retrieveAllSuppliersTest() {
+        List<Supplier> expectedSuppliers = new ArrayList<>();
+        expectedSuppliers.add(new Supplier(1L, "SUP1", "Label1", SupplierCategory.ORDINAIRE, null, null));
+        expectedSuppliers.add(new Supplier(2L, "SUP2", "Label2", SupplierCategory.CONVENTIONNE, null, null));
 
-        Supplier supplier2 = new Supplier();
-        supplier2.setIdSupplier(2L);
-        supplier2.setCode("SUP2");
-        supplier2.setLabel("Supplier 2");
+        when(supplierRepository.findAll()).thenReturn(expectedSuppliers);
 
-        supplierList.add(supplier1);
-        supplierList.add(supplier2);
+        List<Supplier> retrievedSuppliers = supplierService.retrieveAllSuppliers();
 
-        // Configure le mock pour retourner la liste simulée lors de l'appel à findAll
-        when(supplierRepository.findAll()).thenReturn(supplierList);
-
-        // Appelez la méthode de la classe testée
-        List<Supplier> result = supplierService.retrieveAllSuppliers();
-
-        // Assurez-vous que le résultat est égal à la liste simulée
-        assertEquals(supplierList, result);
+        verify(supplierRepository, times(1)).findAll();
+        assertEquals(expectedSuppliers, retrievedSuppliers);
     }
 
     @Test
-    void addSupplier() {
-        Supplier newSupplier = new Supplier();
-        newSupplier.setIdSupplier(3L);
-        newSupplier.setCode("SUP3");
-        newSupplier.setLabel("Supplier 3");
+    void addSupplierTest() {
+        Supplier supplierToAdd = new Supplier(1L, "SUP3", "Label3", SupplierCategory.ORDINAIRE, null, null);
 
-        // Configure le mock pour retourner le nouveau fournisseur simulé lors de l'appel à save
-        when(supplierRepository.save(newSupplier)).thenReturn(newSupplier);
+        when(supplierRepository.save(supplierToAdd)).thenReturn(supplierToAdd);
 
-        // Appelez la méthode de la classe testée
-        Supplier addedSupplier = supplierService.addSupplier(newSupplier);
+        Supplier addedSupplier = supplierService.addSupplier(supplierToAdd);
 
-        // Assurez-vous que le résultat est égal au fournisseur simulé
-        assertEquals(newSupplier, addedSupplier);
+        verify(supplierRepository, times(1)).save(supplierToAdd);
+        assertEquals(supplierToAdd, addedSupplier);
     }
 
     @Test
-    void updateSupplier() {
-        Supplier existingSupplier = new Supplier();
-        existingSupplier.setIdSupplier(4L);
-        existingSupplier.setCode("SUP4");
-        existingSupplier.setLabel("Supplier 4");
+    void updateSupplierTest() {
+        Supplier supplierToUpdate = new Supplier(1L, "SUP1", "Label1", SupplierCategory.ORDINAIRE, null, null);
 
-        // Configure le mock pour retourner le fournisseur existant simulé lors de l'appel à save
-        when(supplierRepository.save(existingSupplier)).thenReturn(existingSupplier);
+        when(supplierRepository.save(supplierToUpdate)).thenReturn(supplierToUpdate);
 
-        // Appelez la méthode de la classe testée
-        Supplier updatedSupplier = supplierService.updateSupplier(existingSupplier);
+        Supplier updatedSupplier = supplierService.updateSupplier(supplierToUpdate);
 
-        // Assurez-vous que le résultat est égal au fournisseur simulé
-        assertEquals(existingSupplier, updatedSupplier);
+        verify(supplierRepository, times(1)).save(supplierToUpdate);
+        assertEquals(supplierToUpdate, updatedSupplier);
+    }
+
+    // fonctions avec Mockito
+
+    @Test
+    void deleteSupplierUsingMockitoTest() {
+        long supplierId = 1L;
+        doNothing().when(supplierRepository).deleteById(supplierId);
+
+        supplierService.deleteSupplier(supplierId);
+
+        verify(supplierRepository, times(1)).deleteById(supplierId);
     }
 
     @Test
-    void deleteSupplier() {
-        Long supplierIdToDelete = 5L;
+    void retrieveSupplierUsingMockitoTest() {
+        long supplierId = 1L;
+        Supplier expectedSupplier = new Supplier(1L, "SUP1", "Label1", SupplierCategory.ORDINAIRE, null, null);
 
-        // Appelez la méthode de la classe testée
-        supplierService.deleteSupplier(supplierIdToDelete);
+        when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(expectedSupplier));
 
-        // Vérifiez que la méthode deleteById du repository a été appelée avec l'ID du fournisseur à supprimer
-        verify(supplierRepository).deleteById(supplierIdToDelete);
-    }
-
-    @Test
-    void retrieveSupplier() {
-        Long supplierId = 6L;
-        Supplier supplier = new Supplier();
-        supplier.setIdSupplier(supplierId);
-        supplier.setCode("SUP6");
-        supplier.setLabel("Supplier 6");
-
-        // Configure le mock pour retourner le fournisseur simulé lors de l'appel à findById
-        when(supplierRepository.findById(supplierId)).thenReturn(Optional.of(supplier));
-
-        // Appelez la méthode de la classe testée
         Supplier retrievedSupplier = supplierService.retrieveSupplier(supplierId);
 
-        // Assurez-vous que le résultat est égal au fournisseur simulé
-        assertEquals(supplier, retrievedSupplier);
+        verify(supplierRepository, times(1)).findById(supplierId);
+        assertEquals(expectedSupplier, retrievedSupplier);
     }
 }
