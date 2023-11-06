@@ -8,7 +8,7 @@ pipeline {
                 git branch: 'mootaz', credentialsId: 'token', url: 'https://github.com/fatmalina1231/DevOps_Project.git'
             }
         }
-
+    }
     post {
         success {
             echo 'Pipeline succeeded!'
