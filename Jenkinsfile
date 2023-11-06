@@ -6,7 +6,7 @@ pipeline {
             steps {
                echo "Getting Project from Git"; 
                 git branch: 'mootaz', credentialsId: 'token', url: 'https://github.com/fatmalina1231/DevOps_Project.git'
-                sh 'chmod +x mvnw'
+                sh 'mvn clean package -DskipTests'
                 sh 'sudo docker build -t my-spring-app .'
                 sh 'sudo docker run --network springboot-mysql-net --name springboot-mysql-container -p 9090:9090 my-spring-app'
             }
