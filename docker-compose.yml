@@ -14,7 +14,7 @@ services:
       - db:/var/lib/mysql
   app:
     container_name: devops
-    image: fatmalina/backend  # Replace with the actual image and tag
+    image: fffffffffffffffffffffffffff/backend  # Replace with the actual image and tag
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{
