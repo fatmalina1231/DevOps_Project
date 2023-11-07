@@ -45,17 +45,18 @@ class ActivitySectorImplTest {
     }};
     @Test
     void retrieveAllActivitySectors() {
-        /*List<ActivitySector> activitySectors=iActivitySector.retrieveAllActivitySectors();
-        Assertions.assertEquals(0,activitySectors.size());*/
+        List<ActivitySector> activitySectors=iActivitySector.retrieveAllActivitySectors();
+        Assertions.assertEquals(0,activitySectors.size());
     }
 
     @Test
     void addActivitySector() {
         //activity=activitySectorRepository.save(activity);
         //Assertions.assertNotNull(activity.getIdSecteurActivite());
-
+        
+        ActivitySector activity=new ActivitySector(1L,"azerty","bbb");
         Mockito.when(activitySectorRepository.save(activity)).thenReturn(activity);
-        ActivitySector activitySectorr = activitySector.addActivitySector(new ActivitySector(7L,"oip","kjh"));
+        ActivitySector activitySectorr = activitySector.addActivitySector(activity);
         Assertions.assertNotNull(activitySectorr);
     }
 
