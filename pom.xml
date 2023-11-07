@@ -16,6 +16,9 @@
     <properties>
         <java.version>11</java.version>
         <maven.test.skip>false</maven.test.skip>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
 
 
@@ -75,7 +78,23 @@
                     </excludes>
                 </configuration>
             </plugin>
-        </plugins>
+           <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.0.201403182114</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <destFile>${sonar.jacoco.reportPath}</destFile>
+            </configuration>
+        </plugin>
+        </plugins> 
+        
         <testResources>
             <testResource>
                 <directory>${project.basedir}/src/test/java</directory>
