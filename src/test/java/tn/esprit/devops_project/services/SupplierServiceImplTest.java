@@ -16,7 +16,7 @@ import tn.esprit.devops_project.repositories.SupplierRepository;
 import java.util.ArrayList;
 import java.util.Optional;
 
-
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 class SupplierServiceImplTest {
     @InjectMocks
