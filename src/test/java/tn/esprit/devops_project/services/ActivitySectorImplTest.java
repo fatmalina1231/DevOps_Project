@@ -16,13 +16,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.devops_project.entities.*;
 import tn.esprit.devops_project.repositories.ActivitySectorRepository;
 import tn.esprit.devops_project.services.Iservices.IActivitySector;
-
-
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
-@ExtendWith(SpringExtension.class)
-@ExtendWith(MockitoExtension.class)
+
+
+//@ExtendWith(SpringExtension.class)
+//@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 class ActivitySectorImplTest {
 @Autowired
