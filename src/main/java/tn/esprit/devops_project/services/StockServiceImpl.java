@@ -30,5 +30,12 @@ public class StockServiceImpl implements IStockService {
     }
 
 
+    @Override
+    public Stock updateStock(Long id, String newTitle) {
+        Stock existingStock = stockRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Stock not found"));
 
+        existingStock.setTitle(newTitle);
+        return stockRepository.save(existingStock);
+    }
 }
