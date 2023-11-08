@@ -110,6 +110,14 @@
             </goals>
         </execution>
     </executions>
+                     <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.14.1</version>
+                    <configuration>
+                        <argLine>${argLine}</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
 </plugin>
 
         </plugins> 
