@@ -21,8 +21,7 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>java</sonar.language>
-        <sonar.host.url>http://192.168.1.194:9000</sonar.host.url>
-    </properties>
+     </properties>
     
     <dependencies>
         <dependency>
@@ -82,23 +81,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.11.0.1934</version> <!-- Use the latest version available -->
-            <executions>
-                <execution>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>sonar</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <sonar.host.url>http://192.168.1.194:9000</sonar.host.url> <!-- SonarQube server URL -->
-                <sonar.login>your_sonar_login_token_here</sonar.login> <!-- If authentication is required -->
-            </configuration>
-           </plugin>
             <!-- JaCoCo code coverage plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
