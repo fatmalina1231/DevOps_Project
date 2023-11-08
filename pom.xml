@@ -119,7 +119,7 @@
                         <argLine>${argLine}</argLine>
                     </configuration>
                 </plugin>
-            </plugins>
+
         </plugins> 
         
         <testResources>
