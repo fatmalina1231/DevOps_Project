@@ -45,8 +45,8 @@ class ActivitySectorImplTest {
     }};
     @Test
     void retrieveAllActivitySectors() {
-        /*List<ActivitySector> activitySectors=iActivitySector.retrieveAllActivitySectors();
-        Assertions.assertEquals(0,activitySectors.size());*/
+        List<ActivitySector> activitySectors=iActivitySector.retrieveAllActivitySectors();
+        Assertions.assertEquals(0,activitySectors.size());
     }
 
     @Test
@@ -64,10 +64,10 @@ class ActivitySectorImplTest {
     void deleteActivitySector() {
         //activitySector.deleteActivitySector(1L);
 
-        /*Long activitySectorIdToDelete = 1L;
+        Long activitySectorIdToDelete = 1L;
         Mockito.when(activitySectorRepository.existsById(activitySectorIdToDelete)).thenReturn(true);
         Mockito.doNothing().when(activitySectorRepository).deleteById(activitySectorIdToDelete);
-        iActivitySector.deleteActivitySector(activitySectorIdToDelete);*/
+        iActivitySector.deleteActivitySector(activitySectorIdToDelete);
     }
 
     @Test
@@ -76,10 +76,10 @@ class ActivitySectorImplTest {
         //activity=activitySectorRepository.save(activity);
         //Assertions.assertNotEquals(activity.getLibelleSecteurActivite(),"bbb");
 
-        /*ActivitySector activity = activitySectorRepository.findById(1L).orElse(null);
+        ActivitySector activity = activitySectorRepository.findById(1L).orElse(null);
         activity.setLibelleSecteurActivite("nbv");
         activity = activitySectorRepository.save(activity);
-        Assertions.assertNotEquals(activity.getLibelleSecteurActivite(),"bbb");*/
+        Assertions.assertNotEquals(activity.getLibelleSecteurActivite(),"bbb");
     }
 
     @Test
