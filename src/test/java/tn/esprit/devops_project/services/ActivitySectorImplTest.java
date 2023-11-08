@@ -21,7 +21,7 @@ import tn.esprit.devops_project.services.Iservices.IActivitySector;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-@ExtendWith(SpringExtension.class)
+//@ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 class ActivitySectorImplTest {
@@ -38,11 +38,11 @@ class ActivitySectorImplTest {
     //InvoiceDetail invoiceDetail=new InvoiceDetail(1,15,15,1,1);
     //Product product=new Product(1,"azerty",16,3,ProductCategory.ELECTRONICS,1);
     //Stock stock=new Stock(1,"ps",1);
-    ActivitySector activity=new ActivitySector(1L,"azerty","bbb");
+    /*ActivitySector activity=new ActivitySector(1L,"azerty","bbb");
     List<ActivitySector> listActivity = new ArrayList<ActivitySector>() {{
         add(new ActivitySector(2L, "azerty1", "bbb1"));
         add(new ActivitySector(3L, "azerty2", "bbb2"));
-    }};
+    }};*/
     @Test
     void retrieveAllActivitySectors() {
         /*List<ActivitySector> activitySectors=iActivitySector.retrieveAllActivitySectors();
