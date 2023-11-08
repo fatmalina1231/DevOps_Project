@@ -1,29 +1,28 @@
-version: '2.3.3'
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql-db
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: devops
-    volumes:
-      - db:/var/lib/mysql
-    restart: unless-stopped
+      MYSQL_DATABASE: spring
+    ports:
+      - 3306:3306
+    networks:
+      - springboot-mysql
 
-  devops_project:
+  my-spring-app:
+    container_name: my-spring-app
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
-      - "8082:8082"
+      - "9090:9090"
     depends_on:
-      - mysql
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/devops?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    volumes:
-      - .m2:/root/.m2
+      - mysqldb
+    networks:
+      - springboot-mysql
     restart: always
-volumes:
-  db:
+
+networks:
+  springboot-mysql:
+    driver: bridge
