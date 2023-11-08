@@ -4,7 +4,7 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: spring
+      MYSQL_DATABASE: projet
     ports:
       - 3306:3306
     networks:
@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "9090:9090"
+      - "8082:8082"
     depends_on:
       - mysqldb
     networks:
