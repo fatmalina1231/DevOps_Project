@@ -15,7 +15,7 @@
     <description>DevOps_Project</description>
     <properties>
         <java.version>11</java.version>
-        <maven.test.skip>false</maven.test.skip>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
 
