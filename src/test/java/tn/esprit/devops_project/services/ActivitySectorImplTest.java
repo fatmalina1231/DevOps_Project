@@ -20,8 +20,8 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-//@ExtendWith(SpringExtension.class)
-//@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 class ActivitySectorImplTest {
 @Autowired
